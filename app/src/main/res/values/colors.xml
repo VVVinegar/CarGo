@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="PLAYER">#f70313</color>
+    <color name="BARRIER">#27ded1</color>
+    <color name="ROAD">#cca69f9f</color>
+    <color name="GRASS">#aa93ec93</color>
+    <color name="OTHERCARS">#ffef12</color>
+</resources>
