@@ -74,16 +74,11 @@ public class Player extends BaseLayer {
             carX = way2-75;
         }
 
-//        if(touchX < screenW/2 && carX==way1-75) {
-//            surface.setGameState(Constants.GAME_OVER);
-//        }
-//        /**
-//         * 当前车在way3
-//         */
-//        if(touchX > screenW/2 && carX==way3-75) {
-//            surface.setGameState(Constants.GAME_OVER);
-//        }
-//
+
+        /**
+         * 当前车在way3
+         */
+
         if(touchX < screenW/2 && carX==way3-75) {
             carX=way2-75;
         }

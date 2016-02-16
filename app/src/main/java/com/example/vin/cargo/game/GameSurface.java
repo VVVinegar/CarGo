@@ -105,6 +105,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
             case Constants.GAMING:
                 background.draw(canvas,paint);
                 player.draw(canvas,paint);
+                barrier.draw(canvas,paint);
                 break;
             case Constants.GAME_OVER:
                 break;
@@ -126,6 +127,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
             case Constants.GAMING:
                 background.logic();
                 player.logic();
+                barrier.logic();
                 break;
             case Constants.GAME_OVER:
                 break;

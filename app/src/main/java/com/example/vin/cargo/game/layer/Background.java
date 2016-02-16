@@ -99,5 +99,8 @@ public class Background extends BaseLayer {
 
 
     }
+
+   // public float getSpeed(float speed){return speed;}
+
 }
 
