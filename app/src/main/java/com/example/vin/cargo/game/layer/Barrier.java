@@ -26,7 +26,7 @@ public class Barrier extends BaseLayer {
     private float othercarH;
 
     private float otherSpeed;           //障碍汽车的速度
-  
+    private float test;
     private float place;                // 障碍汽车产生的随机位置
     private int isCar;                    //是否产生障碍汽车的随机数
 
