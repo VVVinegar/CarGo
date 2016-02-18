@@ -83,4 +83,9 @@ public class Player extends BaseLayer {
             carX=way2-75;
         }
     }
+
+    public float getCarX(){return carX;}
+    public float getCarY(){return carY;}
+    public float getCarW(){return carW;}
+    public float getCarH(){return carH;}
 }

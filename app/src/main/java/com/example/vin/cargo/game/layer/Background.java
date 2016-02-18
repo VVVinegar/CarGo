@@ -80,7 +80,7 @@ public class Background extends BaseLayer {
         flag1+=speed;
         speed+=acc;
 
-        if (speed>=100){
+        if (speed>=200){
             speed-=acc;
         }
 
@@ -100,7 +100,9 @@ public class Background extends BaseLayer {
 
     }
 
-   // public float getSpeed(float speed){return speed;}
+    public float getSpeed(){
+        return speed;
+    }
 
 }
 

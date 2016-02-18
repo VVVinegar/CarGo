@@ -8,5 +8,5 @@
     <color name="BARRIER">#27ded1</color>
     <color name="ROAD">#cca69f9f</color>
     <color name="GRASS">#aa93ec93</color>
-    <color name="OTHERCARS">#ffef12</color>
+    <color name="GOOD">#ffef12</color>
 </resources>

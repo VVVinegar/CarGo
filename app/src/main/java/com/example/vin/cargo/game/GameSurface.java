@@ -103,17 +103,17 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
                 start.draw(canvas,paint);
                 break;
             case Constants.GAMING:
-                background.draw(canvas,paint);
-                player.draw(canvas,paint);
-                barrier.draw(canvas,paint);
+                background.draw(canvas, paint);
+                player.draw(canvas, paint);
+                barrier.setSpeed(background.getSpeed());
+                barrier.draw(canvas, paint);
                 break;
             case Constants.GAME_OVER:
+                start.draw(canvas,paint);
                 break;
             default:
                 break;
         }
-
-
     }
 
     /**
@@ -127,9 +127,15 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
             case Constants.GAMING:
                 background.logic();
                 player.logic();
+                barrier.setSpeed(background.getSpeed());
+                barrier.setCarX(player.getCarX());
+                barrier.setCarY(player.getCarY());
+                barrier.setCarW(player.getCarW());
+                barrier.setCarH(player.getCarH());
                 barrier.logic();
                 break;
             case Constants.GAME_OVER:
+                initGame();
                 break;
             default:
                 break;
@@ -171,7 +177,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
 
             long end = System.currentTimeMillis();
 
-            if(end - start < 50){
+            if(end - start < 10){
                 try {
                     Thread.sleep(50 - (end - start));
                 } catch (InterruptedException e) {
@@ -182,9 +188,6 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
 
     }
 
-    public int getGameState(){                                                               //????
-        return gameState;
-    }
 
     public void setGameState(int gameState){
         this.gameState=gameState;
