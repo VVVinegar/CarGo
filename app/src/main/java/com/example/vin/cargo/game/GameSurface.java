@@ -199,4 +199,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
         this.gameState=gameState;
     }
 
+    public void setScoreMax(int scoreMax) {
+        this.scoreMax = scoreMax;
+    }
 }

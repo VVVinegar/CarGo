@@ -34,6 +34,7 @@ public class Score extends BaseLayer{
         scoreX=20;
         scoreY=100;
         isStart=true;
+
     }
 
     @Override
@@ -64,7 +65,7 @@ public class Score extends BaseLayer{
         long endTime=System.currentTimeMillis();
         score=(int)(endTime-startTime)/1000;
         if(score>scoreMax){
-            scoreMax=score;
+            surface.setScoreMax(score);
         }
     }
 
