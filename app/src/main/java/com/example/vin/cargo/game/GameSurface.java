@@ -26,13 +26,14 @@ import com.example.vin.cargo.utils.Constants;
  */
 public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,Runnable {
 
-    private boolean flag;
-    private int gameState;             //游戏状态
+    public boolean flag;
+    public int gameState;             //游戏状态
 
     private Canvas canvas;           //画布
     private Paint paint;              //画笔
     private SurfaceHolder holder;          //设置监听器
     private Thread thread;
+    private int scoreMax;
 
     private Background background;
     private Barrier barrier;
@@ -57,8 +58,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
 
         paint=new Paint();
         paint.setAntiAlias(true);
-
-
+        scoreMax=0;
     }
 
     public void initGame(){
@@ -69,6 +69,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
         player=new Player(this);
         score=new Score(this);
         start=new Start(this);
+        score.setScoreMax(scoreMax);
     }
 
 
@@ -101,12 +102,14 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
         switch (gameState){
             case Constants.GAME_START:
                 start.draw(canvas,paint);
+                score.draw(canvas,paint);
                 break;
             case Constants.GAMING:
                 background.draw(canvas, paint);
                 player.draw(canvas, paint);
                 barrier.setSpeed(background.getSpeed());
                 barrier.draw(canvas, paint);
+                score.draw(canvas,paint);
                 break;
             case Constants.GAME_OVER:
                 start.draw(canvas,paint);
@@ -123,6 +126,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
 
         switch (gameState){
             case Constants.GAME_START:
+
                 break;
             case Constants.GAMING:
                 background.logic();
@@ -133,6 +137,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
                 barrier.setCarW(player.getCarW());
                 barrier.setCarH(player.getCarH());
                 barrier.logic();
+                score.logic();
                 break;
             case Constants.GAME_OVER:
                 initGame();
@@ -160,6 +165,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
             default:
                 break;
         }
+
         return super.onTouchEvent(event);                         //super?
     }
 

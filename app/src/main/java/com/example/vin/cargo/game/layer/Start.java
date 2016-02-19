@@ -19,6 +19,15 @@ import com.example.vin.cargo.utils.Constants;
  */
 public class Start extends BaseLayer {
 
+    private int downX;
+    private int downY;
+    private int moveX;
+    private int moveY;
+    private int thisX;
+    private int thisY;
+    private int x;
+    private int y;
+
     private float buttonX;
     private float buttonY;
     private float buttonW;
@@ -41,12 +50,21 @@ public class Start extends BaseLayer {
 
         triangleW = 200;
         traingleH = 100;
+
+//        downX=0;
+//        downY=0;
+//        moveX=0;
+//        moveY=0;
+//        thisX=0;
+//        thisY=0;
+        x=screenW/2;
+        y=screenH/2;
     }
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.BLACK);
-        canvas.drawRect(0,0,screenW,screenH,paint);
+        canvas.drawRect(0, 0, screenW, screenH, paint);
         paint.setColor(Color.WHITE);
 
         canvas.drawRect(buttonX, buttonY, buttonX + buttonW, buttonY + buttonH, paint);
@@ -54,10 +72,11 @@ public class Start extends BaseLayer {
         paint.setColor(Color.GREEN);
         Path path = new Path();
         path.moveTo(buttonX + buttonW / 2 - traingleH / 2, buttonY + buttonH / 2 - triangleW / 2);
-        path.lineTo(buttonX + buttonW / 2 - traingleH / 2, buttonY + buttonH/ 2 + triangleW / 2);
+        path.lineTo(buttonX + buttonW / 2 - traingleH / 2, buttonY + buttonH / 2 + triangleW / 2);
         path.lineTo(buttonX + buttonW / 2 + traingleH / 2, buttonY + buttonH / 2);
         canvas.drawPath(path, paint);
 
+        canvas.drawCircle(x+moveX,y+moveY,50,paint);
     }
 
     @Override
@@ -73,6 +92,25 @@ public class Start extends BaseLayer {
         //判断是否点击了开始按钮
         if(touchX > buttonX && touchX < buttonX + buttonW && touchY > buttonY && touchY < buttonY + buttonH){
             surface.setGameState(Constants.GAMING);
+        }
+
+        switch(event.getAction()) {
+
+            // 按下
+            case MotionEvent.ACTION_DOWN:
+
+                downX = (int) event.getX();
+                downY = (int) event.getY();
+
+                // 移动
+            case MotionEvent.ACTION_MOVE:
+
+                thisX = (int) event.getX();
+                thisY = (int) event.getY();
+                moveX = thisX-downX;
+                moveY = thisY-downY;
+                downX = thisX;
+                downY = thisY;
         }
     }
 }

@@ -109,19 +109,11 @@ public class Barrier extends BaseLayer {
 
             goodcarY += otherSpeed-5;
             if (condition2 == true) {
-                otherSpeed -= 70;
+                otherSpeed -= 10;
                 goodcarY = -2000;
-                do{
-                    goodcarX = getplace();
-                }
-                while (goodcarX!=othercarX);
             }
             if (goodcarY > screenH) {
                 goodcarY = -2000;
-                do{
-                    goodcarX = getplace();
-                }
-                while (goodcarX!=othercarX);
             }
         }
     }
