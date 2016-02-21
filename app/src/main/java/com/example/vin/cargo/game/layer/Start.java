@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.vin.cargo.R;
@@ -76,7 +77,14 @@ public class Start extends BaseLayer {
         path.lineTo(buttonX + buttonW / 2 + traingleH / 2, buttonY + buttonH / 2);
         canvas.drawPath(path, paint);
 
-        canvas.drawCircle(x+moveX,y+moveY,50,paint);
+        canvas.drawCircle(x + moveX, y + moveY, 50, paint);
+
+        Rect rect=canvas.getClipBounds();
+        rect.right=200;
+        rect.bottom=screenH;
+        rect.left=0;
+        rect.top=screenH-200;
+        ;
     }
 
     @Override

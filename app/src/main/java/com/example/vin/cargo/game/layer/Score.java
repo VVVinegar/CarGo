@@ -20,7 +20,7 @@ public class Score extends BaseLayer{
     private int scoreMax;
     private int score;
     private long startTime;
-  //  private long endTime;
+    private long endTime;
     private boolean isStart;
 
     /**
@@ -62,7 +62,7 @@ public class Score extends BaseLayer{
             startTime=System.currentTimeMillis();
             isStart=false;
         }
-        long endTime=System.currentTimeMillis();
+            endTime=System.currentTimeMillis();
         score=(int)(endTime-startTime)/1000;
         if(score>scoreMax){
             surface.setScoreMax(score);

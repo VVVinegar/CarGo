@@ -1,6 +1,7 @@
 package com.example.vin.cargo.game.layer;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
@@ -29,6 +30,7 @@ public abstract class BaseLayer {
 
     protected GameSurface surface;
     protected Resources res;
+
 
     protected int screenW;
     protected int screenH;

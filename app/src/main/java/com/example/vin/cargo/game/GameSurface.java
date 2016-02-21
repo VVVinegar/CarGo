@@ -158,7 +158,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
             case Constants.GAMING:
 
                 player.onTouchEvent(event);
-
+                barrier.onTouchEvent(event);
                 break;
             case Constants.GAME_OVER:
                 break;
