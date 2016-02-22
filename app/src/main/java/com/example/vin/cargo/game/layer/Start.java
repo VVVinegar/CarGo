@@ -26,8 +26,11 @@ public class Start extends BaseLayer {
     private int moveY;
     private int thisX;
     private int thisY;
+    private int touchX;
+    private int touchY;
     private int x;
     private int y;
+    private float testX;
 
     private float buttonX;
     private float buttonY;
@@ -60,6 +63,7 @@ public class Start extends BaseLayer {
 //        thisY=0;
         x=screenW/2;
         y=screenH/2;
+
     }
 
     @Override
@@ -77,14 +81,15 @@ public class Start extends BaseLayer {
         path.lineTo(buttonX + buttonW / 2 + traingleH / 2, buttonY + buttonH / 2);
         canvas.drawPath(path, paint);
 
-        canvas.drawCircle(x + moveX, y + moveY, 50, paint);
+        canvas.drawCircle(downX , downY, 50, paint);
 
-        Rect rect=canvas.getClipBounds();
-        rect.right=200;
-        rect.bottom=screenH;
-        rect.left=0;
-        rect.top=screenH-200;
-        ;
+
+//        Rect rect=canvas.getClipBounds();
+//        rect.right=200;
+//        rect.bottom=screenH;
+//        rect.left=0;
+//        rect.top=screenH-200;
+//
     }
 
     @Override
@@ -94,8 +99,15 @@ public class Start extends BaseLayer {
 
     @Override
     public void onTouchEvent(MotionEvent event) {
-        int touchX = (int) event.getX();
-        int touchY = (int) event.getY();
+        if(event.getAction()==MotionEvent.ACTION_DOWN){
+
+            touchX = (int) event.getX();
+            touchY = (int) event.getY();
+        }
+        if(event.getAction()==MotionEvent.ACTION_MOVE){
+            surface.setGameState(Constants.GAMING);
+            testX=event.getX();
+        }
 
         //判断是否点击了开始按钮
         if(touchX > buttonX && touchX < buttonX + buttonW && touchY > buttonY && touchY < buttonY + buttonH){
@@ -109,16 +121,21 @@ public class Start extends BaseLayer {
 
                 downX = (int) event.getX();
                 downY = (int) event.getY();
+                break;
 
                 // 移动
             case MotionEvent.ACTION_MOVE:
 
-                thisX = (int) event.getX();
-                thisY = (int) event.getY();
-                moveX = thisX-downX;
-                moveY = thisY-downY;
-                downX = thisX;
-                downY = thisY;
+//                thisX = (int) event.getX();
+//                thisY = (int) event.getY();
+//                moveX = thisX-downX;
+//                moveY = thisY-downY;
+//                downX = thisX;
+//                downY = thisY;
+                downX = (int) event.getX();
+                downY = (int) event.getY();
+                break;
+
         }
     }
 }

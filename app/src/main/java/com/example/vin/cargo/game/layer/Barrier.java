@@ -77,18 +77,19 @@ public class Barrier extends BaseLayer {
         othercarW = 190;
         othercarH = 230;
 
-        acc = 0.2;
+        acc = 0.7;
         otherSpeed = 30;
-
-        starH=150;
-        starW=150;
-        starX=-150;
-        starY=getplaceStar();
-        starSpeed=40;
 
         starLine1=300;
         starLine2=600;
         starLine3=900;
+
+        starH=150;
+        starW=150;
+        starX=-150;
+        starY=starLine1;
+        starSpeed=60;
+
 
         isStart=true;
     }
@@ -96,6 +97,8 @@ public class Barrier extends BaseLayer {
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
+        int opacity = 250;
+        paint.setAlpha(opacity);
         bitmapCar = BitmapFactory.decodeResource(surface.getResources(), R.mipmap.yellow_car);
         bitmapCar = Bitmap.createScaledBitmap(bitmapCar, (int) othercarW, (int) othercarH, true);
 
@@ -103,7 +106,7 @@ public class Barrier extends BaseLayer {
          * 玩家达到匀速，开始出现障碍车
          */
 
-        if (speed >= 199) {
+        if (speed >= 148) {
 
             canvas.drawBitmap(bitmapCar, othercarX, othercarY, paint);
         }
@@ -114,7 +117,7 @@ public class Barrier extends BaseLayer {
         bitmapStar1 = BitmapFactory.decodeResource(surface.getResources(), R.mipmap.greenstar);
         bitmapStar1 = Bitmap.createScaledBitmap(bitmapStar1, (int) starW, (int) starH, true);
         time=(int)System.currentTimeMillis()/1000;
-        if(time>=15){
+        if(time>=10){
             canvas.drawBitmap(bitmapStar1, starX, starY, paint);
         }
 
@@ -127,7 +130,7 @@ public class Barrier extends BaseLayer {
          * 障碍
          */
         boolean condition1 = rectAndRect(carX, carY, carW, carH, othercarX, othercarY, othercarW, othercarH);
-        if (speed >= 199) {
+        if (speed >= 148) {
 
             othercarY += otherSpeed;
             otherSpeed += acc;
@@ -148,7 +151,7 @@ public class Barrier extends BaseLayer {
         }
         endTime=System.currentTimeMillis();
         time=(int)(endTime-startTime)/1000;
-        if(time>=15){
+        if(time>=10){
             starX+=starSpeed;
             if(starX>screenW){
 
@@ -163,9 +166,10 @@ public class Barrier extends BaseLayer {
     public void onTouchEvent(MotionEvent event) {
         touchX=(int)event.getX();
         touchY=(int)event.getY();
-        if (touchX>starX+starW&&touchY>starY+starH){
+        if (touchX>=starX && touchX<=starX+starW && touchY > starY && touchY<=starY+starH){
             starX=-150-(screenW-touchX);
-            otherSpeed-=5;
+            starY=getplaceStar();
+            otherSpeed-=10;
         }
     }
 

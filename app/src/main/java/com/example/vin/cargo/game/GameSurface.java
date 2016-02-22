@@ -5,12 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 
+import com.example.vin.cargo.Music;
+import com.example.vin.cargo.R;
 import com.example.vin.cargo.game.layer.Background;
 import com.example.vin.cargo.game.layer.Barrier;
 import com.example.vin.cargo.game.layer.Player;
@@ -40,6 +43,8 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
     private Player player;
     private Score score;
     private Start start;
+
+    MediaPlayer mediaplayer;
 
     public GameSurface(Context context) {
         super(context);
@@ -90,6 +95,11 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
     public void surfaceDestroyed(SurfaceHolder holder) {
         flag=false;
     }
+
+//    public void music(){
+//        mediaplayer=MediaPlayer.create(this,R.raw.bgm);
+//        mediaplayer.start();
+//    }
 
     /**
      * 画图

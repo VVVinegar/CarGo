@@ -69,18 +69,19 @@ public class Player extends BaseLayer {
     @Override
     public void draw(Canvas canvas, Paint paint) {
 
-        paint.setColor(Assist.getColor(res, R.color.PLAYER));
-        /**
-         * 设置半透明
-         */
-        int opacity = 127;
-        paint.setAlpha(opacity);
+//        paint.setColor(Assist.getColor(res, R.color.PLAYER));
         /**
          * 画小汽车
          */
         bitmapCar= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.player);
         bitmapCar = Bitmap.createScaledBitmap(bitmapCar, (int) carW, (int) carH, true);
         canvas.drawBitmap(bitmapCar, carX, carY, paint);
+
+        /**
+         * 设置半透明
+         */
+        int opacity = 150;
+        paint.setAlpha(opacity);
 
         /**
          * 左箭头

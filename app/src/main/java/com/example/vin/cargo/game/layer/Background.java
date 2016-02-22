@@ -38,7 +38,7 @@ public class Background extends BaseLayer {
         flag2=-150;
 
         speed=10;
-        acc=1;
+        acc=2;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Background extends BaseLayer {
         flag1+=speed;
         speed+=acc;
 
-        if (speed>=200){
+        if (speed>=150){
             speed-=acc;
         }
 
