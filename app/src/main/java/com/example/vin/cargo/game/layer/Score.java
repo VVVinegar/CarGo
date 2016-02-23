@@ -3,6 +3,7 @@ package com.example.vin.cargo.game.layer;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.MotionEvent;
 
 import com.example.vin.cargo.game.GameSurface;
@@ -16,7 +17,8 @@ import com.example.vin.cargo.utils.Constants;
  */
 public class Score extends BaseLayer{
 
-    private float scoreX,scoreY;
+    private float scoreX1,scoreY1;
+    private float scoreX2,scoreY2;
     private int scoreMax;
     private int score;
     private long startTime;
@@ -31,8 +33,11 @@ public class Score extends BaseLayer{
     public Score(GameSurface surface) {
         super(surface);
         score=0;
-        scoreX=20;
-        scoreY=100;
+        scoreX1=20;
+        scoreY1=100;
+        scoreX2=20;
+        scoreY2=200;
+
         isStart=true;
 
     }
@@ -40,17 +45,22 @@ public class Score extends BaseLayer{
     @Override
     public void draw(Canvas canvas, Paint paint) {
 
-        paint.setColor(Color.BLUE);
+        paint.setColor(Color.WHITE);
         paint.setTextSize(100);
+        paint.setTypeface(Typeface.SERIF);
 
         switch (surface.gameState){
             case Constants.GAME_START:
-                canvas.drawText("最高分数："+scoreMax+"s",scoreX,scoreY,paint);
+                canvas.drawText("BEST SCORE："+scoreMax+"s",scoreX1,scoreY1,paint);
                 break;
             case Constants.GAMING:
-                canvas.drawText("分数："+score+"s",scoreX,scoreY,paint);
+                paint.setTextSize(70);
+                canvas.drawText("score："+'\n'+score+"s",scoreX1,scoreY1,paint);
                 break;
-
+            case Constants.GAME_OVER:
+                paint.setTextSize(100);
+                canvas.drawText("BEST SCORE："+scoreMax+"s",scoreX1,scoreY1,paint);
+                canvas.drawText("Your score："+score+"s",scoreX2,scoreY2,paint);
 
         }
     }

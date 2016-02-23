@@ -11,8 +11,7 @@ public class Constants {
         public final static int GAME_START=0;
         public final static int GAMING=1;
         public final static int GAME_OVER=2;
-
-
+        public final static int GAME_RESTART=3;
 }
 
 

@@ -3,6 +3,7 @@ package com.example.vin.cargo.game.layer;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
@@ -73,6 +74,7 @@ public class Player extends BaseLayer {
         /**
          * 画小汽车
          */
+
         bitmapCar= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.player);
         bitmapCar = Bitmap.createScaledBitmap(bitmapCar, (int) carW, (int) carH, true);
         canvas.drawBitmap(bitmapCar, carX, carY, paint);

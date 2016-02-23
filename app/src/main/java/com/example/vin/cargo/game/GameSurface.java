@@ -16,6 +16,7 @@ import com.example.vin.cargo.Music;
 import com.example.vin.cargo.R;
 import com.example.vin.cargo.game.layer.Background;
 import com.example.vin.cargo.game.layer.Barrier;
+import com.example.vin.cargo.game.layer.End;
 import com.example.vin.cargo.game.layer.Player;
 import com.example.vin.cargo.game.layer.Score;
 import com.example.vin.cargo.game.layer.Start;
@@ -43,8 +44,8 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
     private Player player;
     private Score score;
     private Start start;
+    private End end;
 
-    MediaPlayer mediaplayer;
 
     public GameSurface(Context context) {
         super(context);
@@ -64,17 +65,20 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
         paint=new Paint();
         paint.setAntiAlias(true);
         scoreMax=0;
+        gameState= Constants.GAME_START;
     }
 
     public void initGame(){
-        gameState= Constants.GAME_START;
+
 
         background=new Background(this);
         barrier=new Barrier(this);
         player=new Player(this);
         score=new Score(this);
         start=new Start(this);
+        end=new End(this);
         score.setScoreMax(scoreMax);
+
     }
 
 
@@ -122,8 +126,11 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
                 score.draw(canvas,paint);
                 break;
             case Constants.GAME_OVER:
-                start.draw(canvas,paint);
+                end.draw(canvas,paint);
+                score.draw(canvas,paint);
                 break;
+            case Constants.GAME_RESTART:
+
             default:
                 break;
         }
@@ -150,7 +157,11 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
                 score.logic();
                 break;
             case Constants.GAME_OVER:
+
+                break;
+            case Constants.GAME_RESTART:
                 initGame();
+                gameState= Constants.GAMING;
                 break;
             default:
                 break;
@@ -171,6 +182,9 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
                 barrier.onTouchEvent(event);
                 break;
             case Constants.GAME_OVER:
+                end.onTouchEvent(event);
+                break;
+            case Constants.GAME_RESTART:
                 break;
             default:
                 break;
