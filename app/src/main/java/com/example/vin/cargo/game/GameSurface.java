@@ -19,6 +19,7 @@ import com.example.vin.cargo.game.layer.Barrier;
 import com.example.vin.cargo.game.layer.End;
 import com.example.vin.cargo.game.layer.Player;
 import com.example.vin.cargo.game.layer.Score;
+import com.example.vin.cargo.game.layer.Sharp;
 import com.example.vin.cargo.game.layer.Start;
 import com.example.vin.cargo.utils.Constants;
 
@@ -38,6 +39,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
     private SurfaceHolder holder;          //设置监听器
     private Thread thread;
     private int scoreMax;
+    private int sco;
 
     private Background background;
     private Barrier barrier;
@@ -45,6 +47,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
     private Score score;
     private Start start;
     private End end;
+    private Sharp sharp;
 
 
     public GameSurface(Context context) {
@@ -77,6 +80,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
         score=new Score(this);
         start=new Start(this);
         end=new End(this);
+        sharp=new Sharp(this);
         score.setScoreMax(scoreMax);
 
     }
@@ -126,8 +130,14 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
                 score.draw(canvas,paint);
                 break;
             case Constants.GAME_OVER:
-                end.draw(canvas,paint);
-                score.draw(canvas,paint);
+                if(setScore((int) score.getScore())>=25){
+                    sharp.draw(canvas,paint);
+                }
+                else{
+
+                    end.draw(canvas,paint);
+                    score.draw(canvas,paint);
+                }
                 break;
             case Constants.GAME_RESTART:
 
@@ -178,7 +188,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
                 break;
             case Constants.GAMING:
 
-                player.onTouchEvent(event);
+                player.onTouchEvent(event,canvas,paint);
                 barrier.onTouchEvent(event);
                 break;
             case Constants.GAME_OVER:
@@ -225,5 +235,8 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
 
     public void setScoreMax(int scoreMax) {
         this.scoreMax = scoreMax;
+    }
+    public int setScore(int sco){
+        return sco;
     }
 }

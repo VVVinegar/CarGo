@@ -100,6 +100,11 @@ public class Background extends BaseLayer {
 
     }
 
+    @Override
+    public void onTouchEvent(MotionEvent event, Canvas canvas, Paint paint) {
+
+    }
+
     public float getSpeed(){
         return speed;
     }

@@ -20,7 +20,7 @@ public class Score extends BaseLayer{
     private float scoreX1,scoreY1;
     private float scoreX2,scoreY2;
     private int scoreMax;
-    private int score;
+    private   int sco;
     private long startTime;
     private long endTime;
     private boolean isStart;
@@ -32,7 +32,7 @@ public class Score extends BaseLayer{
      */
     public Score(GameSurface surface) {
         super(surface);
-        score=0;
+        sco=0;
         scoreX1=20;
         scoreY1=100;
         scoreX2=20;
@@ -55,12 +55,12 @@ public class Score extends BaseLayer{
                 break;
             case Constants.GAMING:
                 paint.setTextSize(70);
-                canvas.drawText("score："+'\n'+score+"s",scoreX1,scoreY1,paint);
+                canvas.drawText("score："+'\n'+sco+"s",scoreX1,scoreY1,paint);
                 break;
             case Constants.GAME_OVER:
                 paint.setTextSize(100);
                 canvas.drawText("BEST SCORE："+scoreMax+"s",scoreX1,scoreY1,paint);
-                canvas.drawText("Your score："+score+"s",scoreX2,scoreY2,paint);
+                canvas.drawText("Your score："+sco+"s",scoreX2,scoreY2,paint);
 
         }
     }
@@ -73,9 +73,9 @@ public class Score extends BaseLayer{
             isStart=false;
         }
             endTime=System.currentTimeMillis();
-        score=(int)(endTime-startTime)/1000;
-        if(score>scoreMax){
-            surface.setScoreMax(score);
+        sco=(int)(endTime-startTime)/1000;
+        if(sco>scoreMax){
+            surface.setScoreMax(sco);
         }
     }
 
@@ -84,7 +84,13 @@ public class Score extends BaseLayer{
 
     }
 
+    @Override
+    public void onTouchEvent(MotionEvent event, Canvas canvas, Paint paint) {
+
+    }
+
     public void setScoreMax(int scoreMax) {
         this.scoreMax = scoreMax;
     }
+    public float getScore(){return sco;}
 }

@@ -139,4 +139,9 @@ public class Start extends BaseLayer {
 //
 //        }
     }
+
+    @Override
+    public void onTouchEvent(MotionEvent event, Canvas canvas, Paint paint) {
+
+    }
 }

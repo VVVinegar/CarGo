@@ -76,4 +76,6 @@ public abstract class BaseLayer {
      */
     public abstract void onTouchEvent(MotionEvent event);
 
+    public abstract void onTouchEvent(MotionEvent event,Canvas canvas, Paint paint);
+
 }

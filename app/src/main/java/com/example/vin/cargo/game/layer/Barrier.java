@@ -173,6 +173,11 @@ public class Barrier extends BaseLayer {
         }
     }
 
+    @Override
+    public void onTouchEvent(MotionEvent event, Canvas canvas, Paint paint) {
+
+    }
+
 
     /**
      * 碰撞函数

@@ -39,6 +39,11 @@ public class Player extends BaseLayer {
     protected Bitmap bitmapCar;
     protected Bitmap bitmapL;
     protected Bitmap bitmapR;
+    protected Bitmap bitmapL2;
+    protected Bitmap bitmapR2;
+
+    int touchX;
+    int touchY;
 
 
     /**
@@ -88,7 +93,7 @@ public class Player extends BaseLayer {
         /**
          * 左箭头
          */
-        bitmapL= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowleft1);
+        bitmapL= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowsleft1);
         bitmapL = Bitmap.createScaledBitmap(bitmapL,  arrowsLeft1W, arrowsLeft1H, true);
         canvas.drawBitmap(bitmapL, arrowsLeft1X ,arrowsLeft1Y, paint);
 
@@ -107,8 +112,25 @@ public class Player extends BaseLayer {
 
     @Override
     public void onTouchEvent(MotionEvent event) {
-        int touchX = (int) event.getX();
-        int touchY = (int) event.getY();
+
+    }
+
+    @Override
+    public void onTouchEvent(MotionEvent event,Canvas canvas, Paint paint) {
+        touchX = (int) event.getX();
+        touchY = (int) event.getY();
+
+        bitmapL= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowsleft1);
+        bitmapL = Bitmap.createScaledBitmap(bitmapL,  arrowsLeft1W, arrowsLeft1H, true);
+
+        bitmapL2= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowsleft2);
+        bitmapL2 = Bitmap.createScaledBitmap(bitmapL2, arrowsLeft1W, arrowsLeft1H, true);
+
+        bitmapR= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowsright1);
+        bitmapR = Bitmap.createScaledBitmap(bitmapR,  arrowsRight1W, arrowsRight1H, true);
+
+        bitmapR2= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowsright1);
+        bitmapR2 = Bitmap.createScaledBitmap(bitmapR2,  arrowsRight1W, arrowsRight1H, true);
 
         /**
          * 当前车在way2
@@ -135,6 +157,22 @@ public class Player extends BaseLayer {
 
         if(touchX < screenW/2 && touchY > screenH/2+530 && carX==way3-95) {
             carX=way2-95;
+        }
+        /**
+         * 按键效果
+         */
+        if(touchX < screenW/2 && touchY > screenH/2+530 && event.getAction()==MotionEvent.ACTION_DOWN){
+            canvas.drawBitmap(bitmapL2, arrowsLeft1X ,arrowsLeft1Y, paint);
+        }
+        if(touchX < screenW/2 && touchY > screenH/2+530 && event.getAction()==MotionEvent.ACTION_UP){
+            canvas.drawBitmap(bitmapL, arrowsLeft1X ,arrowsLeft1Y, paint);
+        }
+
+        if(touchX > screenW/2 && touchY > screenH/2+530 && event.getAction()==MotionEvent.ACTION_DOWN){
+            canvas.drawBitmap(bitmapR2, arrowsRight1X ,arrowsRight1Y, paint);
+        }
+        if(touchX > screenW/2 && touchY > screenH/2+530 && event.getAction()==MotionEvent.ACTION_UP){
+            canvas.drawBitmap(bitmapR, arrowsRight1X ,arrowsRight1Y, paint);
         }
     }
 
