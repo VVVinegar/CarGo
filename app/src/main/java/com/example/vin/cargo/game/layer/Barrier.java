@@ -77,7 +77,7 @@ public class Barrier extends BaseLayer {
         othercarW = 190;
         othercarH = 230;
 
-        acc = 0.7;
+        acc = 1.5;
         otherSpeed = 30;
 
         starLine1=300;
@@ -106,7 +106,7 @@ public class Barrier extends BaseLayer {
          * 玩家达到匀速，开始出现障碍车
          */
 
-        if (speed >= 148) {
+        if (speed >= 100) {
 
             canvas.drawBitmap(bitmapCar, othercarX, othercarY, paint);
         }

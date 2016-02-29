@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
@@ -121,25 +122,36 @@ public class Player extends BaseLayer {
         touchY = (int) event.getY();
 
         bitmapL= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowsleft1);
-        bitmapL = Bitmap.createScaledBitmap(bitmapL,  arrowsLeft1W, arrowsLeft1H, true);
+        bitmapL = Bitmap.createScaledBitmap(bitmapL, arrowsLeft1W, arrowsLeft1H, true);
 
         bitmapL2= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowsleft2);
         bitmapL2 = Bitmap.createScaledBitmap(bitmapL2, arrowsLeft1W, arrowsLeft1H, true);
 
         bitmapR= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowsright1);
-        bitmapR = Bitmap.createScaledBitmap(bitmapR,  arrowsRight1W, arrowsRight1H, true);
+        bitmapR = Bitmap.createScaledBitmap(bitmapR, arrowsRight1W, arrowsRight1H, true);
 
         bitmapR2= BitmapFactory.decodeResource(surface.getResources(), R.mipmap.arrowsright1);
-        bitmapR2 = Bitmap.createScaledBitmap(bitmapR2,  arrowsRight1W, arrowsRight1H, true);
+        bitmapR2 = Bitmap.createScaledBitmap(bitmapR2, arrowsRight1W, arrowsRight1H, true);
+
 
         /**
          * 当前车在way2
          */
         if(touchX > screenW/2 && touchY > screenH/2+530 && carX==way2-95) {
+
+            Matrix matrix=new Matrix();
+            matrix.postRotate(30);
+            matrix.postTranslate(carX+carW,carY-35);
+            canvas.drawBitmap(bitmapCar, matrix, paint);
             carX=way3-95;
         }
 
         if(touchX < screenW/2 && touchY > screenH/2+530 && carX==way2-95) {
+
+            Matrix matrix=new Matrix();
+            matrix.postRotate(-30);
+            matrix.postTranslate(carX-200,carY+50);
+            canvas.drawBitmap(bitmapCar, matrix, paint);
             carX=way1-95;
         }
 
@@ -147,6 +159,11 @@ public class Player extends BaseLayer {
          * 当前车在way1
          */
         if(touchX > screenW/2 && touchY > screenH/2+530 && carX==way1-95) {
+
+            Matrix matrix=new Matrix();
+            matrix.postRotate(30);
+            matrix.postTranslate(carX+carW,carY-35);
+            canvas.drawBitmap(bitmapCar, matrix, paint);
             carX = way2-95;
         }
 
@@ -156,6 +173,10 @@ public class Player extends BaseLayer {
          */
 
         if(touchX < screenW/2 && touchY > screenH/2+530 && carX==way3-95) {
+            Matrix matrix=new Matrix();
+            matrix.postRotate(-30);
+            matrix.postTranslate(carX-200,carY+50);
+            canvas.drawBitmap(bitmapCar, matrix, paint);
             carX=way2-95;
         }
         /**

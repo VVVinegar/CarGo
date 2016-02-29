@@ -130,7 +130,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback,R
                 score.draw(canvas,paint);
                 break;
             case Constants.GAME_OVER:
-                if(setScore((int) score.getScore())>=25){
+                if(setScore((int) score.getScore())>=30){
                     sharp.draw(canvas,paint);
                 }
                 else{
